@@ -1,0 +1,46 @@
+<!doctype HTML>
+<html>
+    <head>
+        <!--<meta http-equiv="refresh" content="600" />-->
+        <title>What's On Today</title>
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/moment.js"></script>
+        <script src="assets/js/scripts.js"></script>
+        <link href="assets/css/styles.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="main">
+            <table cellspacing="0" cellpadding="0">
+                <thead>
+                    <tr class="header">
+                        <td class="sessionTimes">
+                            <h1>Session Times</h1>
+                        </td>
+                        <td class="clock">
+                            <h1 class="clockTime"></h1>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+            <table class="content" cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr>
+                        <img id="loader" src="assets/img/spinner.gif" />
+                        <h1 id="sorry-msg" style="display:none;"></h1>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                clock();
+                setInterval(clock, 1000);
+
+                initData();
+                setInterval(initData, 60000);
+            });
+        </script>
+    </body>
+</html>
