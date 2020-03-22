@@ -7,6 +7,7 @@ body {
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
     overflow-y: hidden;
+    cursor: none;
 }
 
 table {
@@ -83,11 +84,6 @@ tr:nth-child(odd) {
     font-weight: 200;
     margin-right: 5%;
     direction: rtl;
-}
-
-a:hover {
-    text-decoration: none !important;
-    cursor: default !important;
 }
 
 .digital-clock {
