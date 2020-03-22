@@ -3,6 +3,24 @@ function clock() {
     $('.clockTime').text(time);
 }
 
+function string_to_slug (str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+  
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
+
+    return str;
+}
+
 // Returns true if we can reach the API
 function hostReachable(cb) {
     var xhr = new XMLHttpRequest();
@@ -33,13 +51,13 @@ function initData() {
             var url = "https://shorelinecinema.co.nz/api/today.php";
             $.get(url, function(response){ 
                 console.log(response);
-                if (typeof window.movie_list != undefined && window.movie_list == response['list']) {
+                if (typeof window.movie_list != undefined && _.isEqual(response['list'], window.movie_list)) {
                     console.log("Movie list exists, moving on");
                     displayData();
                 } else {
                     console.log("Movie list doesn't exist, saving.");
                     window.movie_list = response['list'];
-                    displayData();
+                    displayData(force_reset = true);
                 }
             });
         } else {
@@ -56,9 +74,44 @@ function initData() {
     });
 }
 
-function displayData() {
+function displayData(force_reset = false) {
     $('img#loader').fadeOut();
+
+    if (force_reset == true) {
+        console.log('Force resetting');
+        $('#content-body').empty();
+    }
+
+    var movie_list = window.movie_list;
+    if (Array.isArray(movie_list) && movie_list.length == 0) {
+        $('#sorry-msg').text("No movies left.").fadeIn();
+    } else {
+        $('#sorry-msg').text('').fadeOut();
+    }
+
     for (var movie in window.movie_list) {
-        console.log(window.movie_list[movie]['title']);
+
+        var movie_slug = string_to_slug(window.movie_list[movie]['title']);
+        var title = window.movie_list[movie]['title'];
+        var thumbnail = window.movie_list[movie]['thumbnail'];
+
+        if ($('#content-body').find(`.movie_gallery_item[data-movie="${movie_slug}"]`).length) {
+            console.log(`"${movie_slug}" already exists, moving on.`);
+        } else {
+            var contenthtml = `
+                <tr class="movie_gallery_item" data-movie="${movie_slug}">
+                    <td class="thumbnail">
+                        <img class="thumbnail" src="${thumbnail}"/>
+                    </td>
+                    <td>
+                        <h3>${title}</h3>
+                    </td>
+                    <td>
+                        <p><strong>${window.movie_list[movie]['time']}</strong></p>
+                    </td>
+                </tr>
+            `;
+            $('#content-body').append(contenthtml);
+        }
     }
 }

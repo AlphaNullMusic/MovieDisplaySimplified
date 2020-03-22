@@ -1,5 +1,5 @@
 body {
-    margin: 40px 0 0 0;
+    /*margin: 40px 0 0 0;*/
     padding: 0;
     background: top center #8b886c repeat url('../img/page-bgnd.jpg');
     background-size: cover;
@@ -34,7 +34,6 @@ tr.header {
     margin: 0;
     padding: 0;
     width: 8%;
-    padding-right: 5%;
 }
 
 #main {
@@ -82,7 +81,8 @@ tr:nth-child(odd) {
     float: right;
     font-size: 30px !important;
     font-weight: 200;
-    padding-right: 10%;
+    margin-right: 5%;
+    direction: rtl;
 }
 
 a:hover {
@@ -96,7 +96,7 @@ a:hover {
     margin-top: 0;
     float: right;
 }
-.sorry {
+#sorry-msg {
     color: #ece9d3;
 }
 

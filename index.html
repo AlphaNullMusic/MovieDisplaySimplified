@@ -1,10 +1,12 @@
 <!doctype HTML>
 <html>
     <head>
-        <!--<meta http-equiv="refresh" content="600" />-->
+        <meta http-equiv="refresh" content="3600" />
+        <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
         <title>What's On Today</title>
         <script src="assets/js/jquery.js"></script>
         <script src="assets/js/moment.js"></script>
+        <script src="assets/js/lodash.js"></script>
         <script src="assets/js/scripts.js"></script>
         <link href="assets/css/styles.css" rel="stylesheet">
     </head>
@@ -24,8 +26,8 @@
                 </thead>
             </table>
             <table class="content" cellspacing="0" cellpadding="0">
-                <tbody>
-                    <tr>
+                <tbody id="content-body">
+                    <tr id="first-loader">
                         <img id="loader" src="assets/img/spinner.gif" />
                         <h1 id="sorry-msg" style="display:none;"></h1>
                     </tr>
