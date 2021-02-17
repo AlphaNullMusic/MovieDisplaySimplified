@@ -3,7 +3,7 @@ body {
     padding: 0;
     background: top center #8b886c repeat url('../img/page-bgnd.jpg');
     background-size: cover;
-    color: #dfdccd;
+    color: #ece7d2;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
     overflow-y: hidden;
@@ -82,7 +82,7 @@ tr:nth-child(odd) {
     float: right;
     font-size: 30px !important;
     font-weight: 200;
-    margin-right: 5%;
+    margin-right: 1.5rem;
     direction: rtl;
 }
 
@@ -95,4 +95,7 @@ tr:nth-child(odd) {
 #sorry-msg {
     color: #ece9d3;
 }
-
+.id-required {
+    font-size: 0.8em;
+    white-space: nowrap;
+}

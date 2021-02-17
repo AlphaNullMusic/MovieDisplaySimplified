@@ -100,8 +100,8 @@ function displayData(force_reset = false) {
             console.log(`"${movie_slug}" already exists, moving on.`);
         } else {
 	    var id_notice = '';
-	    if (id_required == 1) {
-		id_notice = `- <span class="id-required"><em>ID Required</em></span>`;
+	    if (id_required == 1} {
+		id_notice = `<h5>ID Required</h5>`;
 	    }
             var contenthtml = `
                 <tr class="movie_gallery_item" data-movie="${movie_slug}">
@@ -109,7 +109,8 @@ function displayData(force_reset = false) {
                         <img class="thumbnail" src="${thumbnail}"/>
                     </td>
                     <td>
-                        <h3>${title}&nbsp;${id_notice}</h3>
+                        <h3>${title}</h3>
+			${id_notice}
                     </td>
                     <td>
                         <p><strong>${window.movie_list[movie]['time']}</strong></p>
@@ -120,3 +121,4 @@ function displayData(force_reset = false) {
         }
     }
 }
+
